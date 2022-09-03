@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/authSlice";
-import newsReducer from "../features/newsSlice";
+import todoReducer from "../features/todoSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    news: newsReducer,
+    todo: todoReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });
