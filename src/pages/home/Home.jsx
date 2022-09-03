@@ -1,6 +1,6 @@
-import Form from "../form/Form";
-import Table from "../table/Table";
-import "./Home.css";
+import Form from "../../components/Form";
+import Table from "../../components/Table";
+import "./home.css";
 
 const Home = () => {
   return (
@@ -12,6 +12,7 @@ const Home = () => {
         <div className="row">
           <Form />
           <Table />
+
         </div>
       </div>
     </div>

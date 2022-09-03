@@ -1,12 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import Home from './pages/home/Home';
+import store from "./app/store";
+import AppRouter from "./router/AppRouter";
+import { Provider } from "react-redux";
 
 function App() {
   return (
-    <>
-<Home />
-    </>
+    <div>
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    </div>
   );
 }
 
