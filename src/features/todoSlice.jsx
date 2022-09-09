@@ -33,7 +33,7 @@ export const getTodo = createAsyncThunk(
   }
 );
 
-const newsSlice = createSlice({
+const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
@@ -59,6 +59,6 @@ const newsSlice = createSlice({
 //! bilhassa createAsyncThunk tarafindan olusturulan action'lara
 //! cevap vermek icin kullanilir.
 
-export const { clearTodoList } = newsSlice.actions;
+export const { clearTodoList } = todoSlice.actions;
 
-export default newsSlice.reducer;
+export default todoSlice.reducer;

@@ -4,7 +4,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaPenFancy, FaTrash } from "react-icons/fa";
 import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "../../utils/firebaseConfig";
+import { db } from "../utils/firebaseConfig";
 import { clearTodoList, getTodo } from "../features/todoSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -31,15 +31,13 @@ const Table = () => {
     };
   }, [dispatch]);
 
-  //!below for update data
-  // const [editItem, setEditItem] = useState("");
-  //!below for delete data
-  // const handleDelete = async (id) => {
-  //   console.log(id);
-  //   const userDoc = doc(db, "person", id);
-  //   await deleteDoc(userDoc);
-  //   dispatch(getTodo());
-  // };
+  // !below for delete data
+  const handleDelete = async (id) => {
+    console.log(id);
+    const userDoc = doc(db, "person", id);
+    await deleteDoc(userDoc);
+    dispatch(getTodo());
+  };
 
   console.log(todoList);
   return (
@@ -96,13 +94,3 @@ const Table = () => {
 };
 
 export default Table;
-
-// import React from 'react'
-
-// const Table = () => {
-//   return (
-//     <div>Table</div>
-//   )
-// }
-
-// export default Table

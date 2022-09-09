@@ -1,7 +1,45 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { FaUser, FaPhoneAlt } from "react-icons/fa";
+import { db } from "../utils/firebaseConfig";
+import { useDispatch } from "react-redux";
+import { getTodo } from "../features/todoSlice";
+import { useEffect, useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const Edit = () => {
   const { state } = useLocation();
+  const { id, name, phone, gender } = state;
+  const dispatch = useDispatch();
+
+  const [newName, setNewName] = useState(name);
+  const [newPhone, setNewPhone] = useState(phone);
+  const [newGender, setNewGender] = useState(gender);
+  const navigate = useNavigate();
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    const userDoc = doc(db, "person", id);
+    try {
+      await updateDoc(userDoc, {
+        name: newName,
+        phone: newPhone,
+        gender: newGender,
+      });
+      console.log("güncellendi");
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+    setNewName("");
+    setNewPhone("");
+    setNewGender("");
+    dispatch(getTodo());
+  };
+  // useEffect(() => {
+  //   setNewName(name);
+  //   setNewPhone(phone);
+  //   setNewGender(gender);
+  // }, [name, phone, gender]);
 
   return (
     <div className="col-md-4 col-xs-12 mb-5">
@@ -19,7 +57,7 @@ const Edit = () => {
           >
             Add Contact
           </label>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleEdit}>
             <div className="form-control">
               <div style={{ position: "relative" }}>
                 <FaUser
@@ -36,8 +74,8 @@ const Edit = () => {
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
                 />
               </div>
               <div style={{ position: "relative" }}>
@@ -55,8 +93,8 @@ const Edit = () => {
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Phone Number"
-                  value={phone}
-                  onChange={(e) => setNumber(e.target.value)}
+                  value={newPhone}
+                  onChange={(e) => setNewPhone(e.target.value)}
                 />
               </div>
               <div className="input-group mb-3">
@@ -71,8 +109,8 @@ const Edit = () => {
                   }}
                   id="inputGroupSelect03"
                   placeholder="Gender"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
+                  value={newGender}
+                  onChange={(e) => setNewGender(e.target.value)}
                   required
                 >
                   <option value="">GENDER</option>
@@ -85,8 +123,13 @@ const Edit = () => {
                 type="submit"
                 className="btn btn-info form-control text-white"
               >
-                Add
+                Edit
               </button>
+              <li className="list-group-item">
+                <Link to={-1} className="card-link">
+                  Go Back
+                </Link>
+              </li>
             </div>
           </form>
         </div>

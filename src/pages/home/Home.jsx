@@ -12,7 +12,6 @@ const Home = () => {
         <div className="row">
           <Form />
           <Table />
-
         </div>
       </div>
     </div>
