@@ -11,11 +11,11 @@ const Edit = () => {
   const { state } = useLocation();
   const { id, name, phone, gender } = state;
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [newName, setNewName] = useState(name);
   const [newPhone, setNewPhone] = useState(phone);
   const [newGender, setNewGender] = useState(gender);
-  const navigate = useNavigate();
+
   const handleEdit = async (e) => {
     e.preventDefault();
     const userDoc = doc(db, "person", id);
