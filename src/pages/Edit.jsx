@@ -3,7 +3,7 @@ import { FaUser, FaPhoneAlt } from "react-icons/fa";
 import { db } from "../utils/firebaseConfig";
 import { useDispatch } from "react-redux";
 import { getTodo } from "../features/todoSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
