@@ -9,6 +9,7 @@ import { clearTodoList, getTodo } from "../features/todoSlice";
 import { useNavigate } from "react-router-dom";
 import loadingGif from "../assets/spinner.gif";
 import { Box } from "@mui/system";
+import { toastWarnNotify } from "../helpers/ToastNotify";
 const Table = () => {
   // const [personList, setPersonList] = useState([]);
   // const toDoCollectionRef = collection(db, "person");
@@ -38,6 +39,7 @@ const Table = () => {
     const userDoc = doc(db, "person", id);
     await deleteDoc(userDoc);
     dispatch(getTodo());
+    toastWarnNotify("Deleted successfully!");
   };
 
   console.log(todoList);

@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "../features/authSlice";
+import { toastErrorNotify } from "../helpers/ToastNotify";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,10 @@ const Navbar = () => {
     dispatch(clearUser());
     navigate("login");
   };
+  const handleHome = () => {
+    toastErrorNotify("please login");
+    navigate("/");
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -27,7 +32,7 @@ const Navbar = () => {
             variant="h6"
             component="div"
             sx={{ flexGrow: 1, cursor: "pointer" }}
-            onClick={() => navigate("/")}
+            onClick={handleHome}
           >
             Clarusway News
           </Typography>

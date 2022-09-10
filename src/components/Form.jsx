@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { FaUser, FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { db } from "../utils/firebaseConfig";
-// import { addTodo } from "../../redux/actions/todoActions";
-import { getTodo } from "../features/todoSlice"
+import { toastSuccessNotify } from "../helpers/ToastNotify";
+import { getTodo } from "../features/todoSlice";
 const personCollectionRef = collection(db, "person");
 
 const Form = () => {
@@ -28,6 +28,7 @@ const Form = () => {
     setGender("");
     createTodo(name, phone, gender);
     dispatch(getTodo());
+    toastSuccessNotify("Updated successfully!");
   };
 
   useEffect(() => {
