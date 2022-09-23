@@ -34,7 +34,7 @@ const Navbar = () => {
             sx={{ flexGrow: 1, cursor: "pointer" }}
             onClick={handleHome}
           >
-            Clarusway News
+            My Contact Lists
           </Typography>
           {user ? (
             <Button color="inherit" onClick={handleLogout}>
